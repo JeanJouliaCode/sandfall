@@ -18,6 +18,7 @@ ctx.drawImage(img, imageX, imageY, imageWidth, imageHeight);
 
 var width = 200
 var height = 150
+
 // var width = 20
 // var height = 20
 
