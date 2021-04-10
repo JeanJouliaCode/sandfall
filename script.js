@@ -14,8 +14,6 @@ imageHeight = 100
 imageX = 75
 imageY = 20
 
-ctx.drawImage(img, imageX, imageY, imageWidth, imageHeight);
-
 var width = 200
 var height = 150
 
@@ -58,16 +56,19 @@ for (var i = 0; i < imageHeight; i++) {
 
 var fakeRnd = 0
 
-setInterval(() => {
-  for (var i = 0; i < activePixel.length; i++) {
-    if (activePixel[i].x && activePixel[i].y) {
-      pixelFall(activePixel[i])
-      //await sleep(100)
+img.onload = () => {
+  ctx.drawImage(img, imageX, imageY, imageWidth, imageHeight);
+  setInterval(() => {
+    for (var i = 0; i < activePixel.length; i++) {
+      if (activePixel[i].x && activePixel[i].y) {
+        pixelFall(activePixel[i])
+        //await sleep(100)
+      }
     }
-  }
-  activePixel = activePixel.filter(pixel => !isStable(pixel))
-  activePixel = [...activePixel, ...findActivePixel(activePixel)]
-}, 1)
+    activePixel = activePixel.filter(pixel => !isStable(pixel))
+    activePixel = [...activePixel, ...findActivePixel(activePixel)]
+  }, 1)
+}
 
 function pixelFall(pixel) {
   fakeRnd = (fakeRnd + 1) % 1000
